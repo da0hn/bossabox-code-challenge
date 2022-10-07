@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: vuttr-service
+  neo4j:
+    uri: bolt://${NEO4j_HOST:localhost}:${NEO4j_PORT:7687}
+server:
+  servlet:
+    context-path: /api/vuttr-service
+  address: 0.0.0.0
+  port: ${PORT:8080}
