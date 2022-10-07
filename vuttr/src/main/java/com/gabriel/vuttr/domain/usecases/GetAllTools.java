@@ -15,7 +15,7 @@ public class GetAllTools implements IGetAllTools {
 
   @Override
   public List<ToolItemResponse> execute(final ToolItemParameter parameter) {
-    return this.toolRepository.findAll().stream()
+    return this.toolRepository.findAllFilteringBy(parameter.tag()).stream()
       .map(ToolItemResponse::of)
       .toList();
   }

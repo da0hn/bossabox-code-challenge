@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ToolRepository {
 
-  List<Tool> findAll();
+  List<Tool> findAllFilteringBy(String tag);
 
 }

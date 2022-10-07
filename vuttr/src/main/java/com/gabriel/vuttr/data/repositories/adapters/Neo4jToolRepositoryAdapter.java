@@ -18,8 +18,8 @@ public class Neo4jToolRepositoryAdapter implements ToolRepository {
 
 
   @Override
-  public List<Tool> findAll() {
-    return this.toolRepository.findAll();
+  public List<Tool> findAllFilteringBy(final String tag) {
+    return this.toolRepository.findToolsFilteringBy(tag);
   }
 
 }
