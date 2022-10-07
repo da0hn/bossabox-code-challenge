@@ -18,19 +18,12 @@ public abstract class NodeEntity implements Serializable {
   @Serial private static final long serialVersionUID = -6436068998233172605L;
   @Id
   @GeneratedValue
-  protected Long id;
+  protected final Long id;
   @CreatedDate
   protected LocalDateTime createdAt;
 
-  protected NodeEntity(
-    final Long id,
-    final LocalDateTime createdAt
-  ) {
+  protected NodeEntity(final Long id) {
     this.id = id;
-    this.createdAt = createdAt;
-  }
-
-  protected NodeEntity() {
   }
 
 

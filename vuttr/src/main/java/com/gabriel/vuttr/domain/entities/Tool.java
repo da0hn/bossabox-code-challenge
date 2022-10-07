@@ -2,42 +2,39 @@ package com.gabriel.vuttr.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.io.Serial;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-@Setter
 @Getter
 @Node("Tool")
-public class Tool extends NodeEntity {
+public class Tool extends NodeEntity implements UnmodifiableNodeEntity<Tool> {
 
   @Serial
   private static final long serialVersionUID = 4782203338953298977L;
 
-  private String title;
-  private String link;
-  private String description;
+  private final String title;
+  private final String link;
+  private final String description;
   @JsonIgnoreProperties("tools")
   @Relationship(type = "TAGGED_BY")
-  private Set<? extends Tag> tags;
+  private Set<Tag> tags;
 
   public Tool(
     final Long id,
-    final LocalDateTime createdAt,
     final String title,
     final String link,
     final String description,
-    final Set<? extends Tag> tags
+    final Set<Tag> tags
   ) {
-    super(id, createdAt);
+    super(id);
     this.title = title;
     this.link = link;
     this.description = description;
@@ -46,7 +43,15 @@ public class Tool extends NodeEntity {
       .orElse(null);
   }
 
-  public Tool() {
+  private void addTag(final Tag tag) {
+    if(this.tags == null) {
+      this.tags = new HashSet<>();
+    }
+    this.tags.add(tag);
+  }
+
+  public void addTags(final Iterable<? extends Tag> tags) {
+    tags.forEach(this::addTag);
   }
 
 
@@ -57,6 +62,17 @@ public class Tool extends NodeEntity {
         .toList()
       )
       .orElse(new ArrayList<>());
+  }
+
+  @Override
+  public Tool withId(final Long id) {
+    return new Tool(
+      id,
+      this.title,
+      this.link,
+      this.description,
+      this.tags
+    );
   }
 
 }
