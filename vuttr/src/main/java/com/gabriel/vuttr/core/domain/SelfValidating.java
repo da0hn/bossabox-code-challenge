@@ -6,11 +6,13 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.springframework.data.annotation.Transient;
 
 import java.util.Set;
 
 public abstract class SelfValidating<T> {
 
+  @Transient
   private final Validator validator;
 
   protected SelfValidating() {
