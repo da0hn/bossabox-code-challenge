@@ -39,4 +39,9 @@ public class Neo4jToolRepositoryAdapter implements ToolRepository {
     return this.tagRepository.findByName(name);
   }
 
+  @Override
+  public void deleteById(final Long id) {
+    this.toolRepository.deleteById(id);
+  }
+
 }
