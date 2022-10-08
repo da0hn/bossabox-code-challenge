@@ -7,6 +7,7 @@ import com.gabriel.vuttr.core.dtos.ToolItemResponse;
 import com.gabriel.vuttr.core.ports.api.ICreateTool;
 import com.gabriel.vuttr.core.ports.api.IGetAllTools;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class ToolController {
     @RequestBody final CreateToolRequest request
   ) {
     final var response = this.createTool.execute(request);
-    return ResponseEntity.ok(response);
+    return ResponseEntity.status(HttpStatus.CREATED).body(response);
   }
 
 
