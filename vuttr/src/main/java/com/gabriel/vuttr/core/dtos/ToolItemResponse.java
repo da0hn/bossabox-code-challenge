@@ -1,6 +1,6 @@
-package com.gabriel.vuttr.domain.usecases;
+package com.gabriel.vuttr.core.dtos;
 
-import com.gabriel.vuttr.domain.entities.Tool;
+import com.gabriel.vuttr.core.domain.Tool;
 
 import java.util.List;
 

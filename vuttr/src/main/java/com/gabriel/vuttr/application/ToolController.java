@@ -1,8 +1,8 @@
-package com.gabriel.vuttr.web;
+package com.gabriel.vuttr.application;
 
-import com.gabriel.vuttr.domain.ports.api.IGetAllTools;
-import com.gabriel.vuttr.domain.usecases.ToolItemParameter;
-import com.gabriel.vuttr.domain.usecases.ToolItemResponse;
+import com.gabriel.vuttr.core.ports.api.IGetAllTools;
+import com.gabriel.vuttr.core.dtos.ToolItemFilterParameter;
+import com.gabriel.vuttr.core.dtos.ToolItemResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ public class ToolController {
   public ResponseEntity<List<ToolItemResponse>> findAll(
     @RequestParam(value = "tag", required = false) final String tag
   ) {
-    final var response = this.getAllTools.execute(new ToolItemParameter(tag));
+    final var response = this.getAllTools.execute(new ToolItemFilterParameter(tag));
     return ResponseEntity.ok(response);
   }
 

@@ -1,4 +1,4 @@
-package com.gabriel.vuttr.domain.entities;
+package com.gabriel.vuttr.core.domain;
 
 import lombok.Getter;
 import lombok.Setter;

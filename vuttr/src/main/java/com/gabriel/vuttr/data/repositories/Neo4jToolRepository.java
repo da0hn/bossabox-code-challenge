@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.data.repositories;
 
-import com.gabriel.vuttr.domain.entities.Tool;
+import com.gabriel.vuttr.core.domain.Tool;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.stereotype.Repository;

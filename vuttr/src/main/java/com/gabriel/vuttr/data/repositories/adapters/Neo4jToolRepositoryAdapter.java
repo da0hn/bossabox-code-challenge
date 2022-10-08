@@ -1,8 +1,8 @@
 package com.gabriel.vuttr.data.repositories.adapters;
 
 import com.gabriel.vuttr.data.repositories.Neo4jToolRepository;
-import com.gabriel.vuttr.domain.entities.Tool;
-import com.gabriel.vuttr.domain.ports.spi.ToolRepository;
+import com.gabriel.vuttr.core.domain.Tool;
+import com.gabriel.vuttr.core.ports.spi.ToolRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
