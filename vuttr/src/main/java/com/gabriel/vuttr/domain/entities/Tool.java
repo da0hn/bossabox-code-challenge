@@ -1,6 +1,5 @@
 package com.gabriel.vuttr.domain.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
@@ -23,7 +22,7 @@ public class Tool extends NodeEntity implements UnmodifiableNodeEntity<Tool> {
   private final String title;
   private final String link;
   private final String description;
-  @JsonIgnoreProperties("tools")
+
   @Relationship(type = "TAGGED_BY")
   private Set<Tag> tags;
 
