@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public abstract class NodeEntity implements Serializable {
+public abstract class NodeEntity<T> extends SelfValidating<T> implements Serializable {
 
   @Serial private static final long serialVersionUID = -6436068998233172605L;
   @Id

@@ -1,5 +1,8 @@
 package com.gabriel.vuttr.core.domain;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
@@ -14,13 +17,22 @@ import java.util.Set;
 
 @Getter
 @Node("Tool")
-public class Tool extends NodeEntity implements UnmodifiableNodeEntity<Tool> {
+public class Tool extends NodeEntity<Tool> implements UnmodifiableNodeEntity<Tool> {
 
   @Serial
   private static final long serialVersionUID = 4782203338953298977L;
 
+  @NotNull
+  @NotEmpty
+  @NotBlank
   private final String title;
+  @NotNull
+  @NotEmpty
+  @NotBlank
   private final String link;
+  @NotEmpty
+  @NotNull
+  @NotBlank
   private final String description;
 
   @Relationship(type = "TAGGED_BY")
@@ -40,6 +52,7 @@ public class Tool extends NodeEntity implements UnmodifiableNodeEntity<Tool> {
     this.tags = Optional.ofNullable(tags)
       .map(Collections::unmodifiableSet)
       .orElse(null);
+    this.validateSelf();
   }
 
   private void addTag(final Tag tag) {
