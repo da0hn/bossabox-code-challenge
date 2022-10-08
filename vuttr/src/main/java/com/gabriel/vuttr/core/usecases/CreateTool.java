@@ -17,12 +17,10 @@ public class CreateTool implements ICreateTool {
 
   @Override
   public ToolCreatedResponse execute(final CreateToolRequest request) {
-    final var tool = new Tool(
-      null,
+    final var tool = Tool.of(
       request.title(),
       request.link(),
-      request.description(),
-      null
+      request.description()
     );
 
     final var tags = request.tags().stream()
@@ -42,7 +40,7 @@ public class CreateTool implements ICreateTool {
     }
     final var tag = this.repository.maybeGetTag(rawTag);
     if(tag.isEmpty()) {
-      final var newTag = new Tag(null, rawTag);
+      final var newTag = Tag.of(rawTag);
       return this.repository.createTag(newTag);
     }
     return tag.get();

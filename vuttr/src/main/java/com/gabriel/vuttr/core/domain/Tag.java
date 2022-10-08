@@ -27,6 +27,10 @@ public class Tag extends NodeEntity<Tag> implements UnmodifiableNodeEntity<Tag> 
     this.validateSelf();
   }
 
+  public static Tag of(final String rawTag) {
+    return new Tag(null, rawTag);
+  }
+
 
   @Override
   public Tag withId(final Long id) {

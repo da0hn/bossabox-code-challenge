@@ -55,6 +55,20 @@ public class Tool extends NodeEntity<Tool> implements UnmodifiableNodeEntity<Too
     this.validateSelf();
   }
 
+  public static Tool of(
+    final String title,
+    final String link,
+    final String description
+  ) {
+    return new Tool(
+      null,
+      title,
+      link,
+      description,
+      null
+    );
+  }
+
   private void addTag(final Tag tag) {
     if(this.tags == null) {
       this.tags = new HashSet<>();
