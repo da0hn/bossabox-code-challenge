@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.web;
 
-import com.gabriel.vuttr.domain.api.IGetAllTools;
+import com.gabriel.vuttr.domain.ports.api.IGetAllTools;
 import com.gabriel.vuttr.domain.usecases.ToolItemParameter;
 import com.gabriel.vuttr.domain.usecases.ToolItemResponse;
 import lombok.AllArgsConstructor;

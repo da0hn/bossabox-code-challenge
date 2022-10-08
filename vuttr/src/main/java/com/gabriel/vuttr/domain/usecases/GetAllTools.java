@@ -1,7 +1,7 @@
 package com.gabriel.vuttr.domain.usecases;
 
-import com.gabriel.vuttr.domain.api.IGetAllTools;
-import com.gabriel.vuttr.domain.spi.ToolRepository;
+import com.gabriel.vuttr.domain.ports.api.IGetAllTools;
+import com.gabriel.vuttr.domain.ports.spi.ToolRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

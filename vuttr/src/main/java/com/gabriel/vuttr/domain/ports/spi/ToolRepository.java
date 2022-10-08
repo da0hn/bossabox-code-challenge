@@ -1,4 +1,4 @@
-package com.gabriel.vuttr.domain.spi;
+package com.gabriel.vuttr.domain.ports.spi;
 
 import com.gabriel.vuttr.domain.entities.Tool;
 

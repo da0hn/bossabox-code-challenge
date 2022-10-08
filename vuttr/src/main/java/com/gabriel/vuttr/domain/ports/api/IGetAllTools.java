@@ -1,4 +1,4 @@
-package com.gabriel.vuttr.domain.api;
+package com.gabriel.vuttr.domain.ports.api;
 
 import com.gabriel.vuttr.domain.usecases.ToolItemParameter;
 import com.gabriel.vuttr.domain.usecases.ToolItemResponse;
