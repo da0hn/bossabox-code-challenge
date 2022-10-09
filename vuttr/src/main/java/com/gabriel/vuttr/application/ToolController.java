@@ -4,9 +4,9 @@ import com.gabriel.vuttr.core.dtos.CreateToolRequest;
 import com.gabriel.vuttr.core.dtos.ToolCreatedResponse;
 import com.gabriel.vuttr.core.dtos.ToolItemFilterParameter;
 import com.gabriel.vuttr.core.dtos.ToolItemResponse;
-import com.gabriel.vuttr.core.ports.api.ICreateTool;
-import com.gabriel.vuttr.core.ports.api.IGetAllTools;
-import com.gabriel.vuttr.core.ports.api.IDeleteTool;
+import com.gabriel.vuttr.core.ports.api.CreateToolUseCase;
+import com.gabriel.vuttr.core.ports.api.GetAllToolsUseCase;
+import com.gabriel.vuttr.core.ports.api.DeleteToolUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +26,9 @@ import java.util.List;
 @RequestMapping("/tools")
 public class ToolController {
 
-  private final IGetAllTools getAllTools;
-  private final ICreateTool createTool;
-  private final IDeleteTool deleteTool;
+  private final GetAllToolsUseCase getAllTools;
+  private final CreateToolUseCase createTool;
+  private final DeleteToolUseCase deleteTool;
 
 
   @GetMapping

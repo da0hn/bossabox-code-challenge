@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.core.usecases;
 
-import com.gabriel.vuttr.core.ports.api.IDeleteTool;
+import com.gabriel.vuttr.core.ports.api.DeleteToolUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Component
 @AllArgsConstructor
-public class DeleteTool implements IDeleteTool {
+public class DeleteToolService implements DeleteToolUseCase {
 
 
   private final Repository repository;

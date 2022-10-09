@@ -6,10 +6,12 @@ import com.gabriel.vuttr.core.dtos.ToolItemResponse;
 
 import java.util.List;
 
-public interface IGetAllTools {
+@FunctionalInterface
+public interface GetAllToolsUseCase {
 
   List<ToolItemResponse> execute(ToolItemFilterParameter parameter);
 
+  @FunctionalInterface
   interface Repository {
       List<Tool> findAllFilteringBy(String tag);
   }

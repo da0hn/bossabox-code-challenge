@@ -1,8 +1,8 @@
 package com.gabriel.vuttr.core.ports.spi;
 
-import com.gabriel.vuttr.core.ports.api.ICreateTool;
-import com.gabriel.vuttr.core.ports.api.IDeleteTool;
-import com.gabriel.vuttr.core.ports.api.IGetAllTools;
+import com.gabriel.vuttr.core.ports.api.CreateToolUseCase;
+import com.gabriel.vuttr.core.ports.api.DeleteToolUseCase;
+import com.gabriel.vuttr.core.ports.api.GetAllToolsUseCase;
 
-public interface ToolRepository extends IGetAllTools.Repository, ICreateTool.Repository, IDeleteTool.Repository {
+public interface ToolRepository extends GetAllToolsUseCase.Repository, CreateToolUseCase.Repository, DeleteToolUseCase.Repository {
 }

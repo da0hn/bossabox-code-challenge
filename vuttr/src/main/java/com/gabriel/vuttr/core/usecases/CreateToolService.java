@@ -4,14 +4,14 @@ import com.gabriel.vuttr.core.domain.Tag;
 import com.gabriel.vuttr.core.domain.Tool;
 import com.gabriel.vuttr.core.dtos.CreateToolRequest;
 import com.gabriel.vuttr.core.dtos.ToolCreatedResponse;
-import com.gabriel.vuttr.core.ports.api.ICreateTool;
+import com.gabriel.vuttr.core.ports.api.CreateToolUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 @Component
 @AllArgsConstructor
-public class CreateTool implements ICreateTool {
+public class CreateToolService implements CreateToolUseCase {
 
   private final Repository repository;
 

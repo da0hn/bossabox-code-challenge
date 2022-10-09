@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.core.usecases;
 
-import com.gabriel.vuttr.core.ports.api.IGetAllTools;
+import com.gabriel.vuttr.core.ports.api.GetAllToolsUseCase;
 import com.gabriel.vuttr.core.dtos.ToolItemFilterParameter;
 import com.gabriel.vuttr.core.dtos.ToolItemResponse;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-public class GetAllTools implements IGetAllTools {
+public class GetAllToolsService implements GetAllToolsUseCase {
 
   private final Repository repository;
 

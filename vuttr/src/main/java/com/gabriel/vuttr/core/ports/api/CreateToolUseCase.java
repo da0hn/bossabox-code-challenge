@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-public interface ICreateTool {
+@FunctionalInterface
+public interface CreateToolUseCase {
 
   @Transactional
   ToolCreatedResponse execute(CreateToolRequest request);
