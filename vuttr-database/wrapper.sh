@@ -14,7 +14,11 @@ set -m
 log_info "Waiting until neo4j stats at :7474 ..."
 wget --quiet --tries=10 --waitretry=10 -O /dev/null http://localhost:7474
 
-if [ -d "/cyphers" ]; then
+HAS_DATA=$(echo $(cypher-shell --format plain "MATCH (n) RETURN count(n) as COUNT") | sed 's/[^0-9]*//g')
+
+log_info "Has data $(echo ${HAS_DATA}) nodes"
+
+if [[ $HAS_DATA -eq 0 && -d "/cyphers" ]]; then
   log_info "Deleting all relations"
   cypher-shell --format plain "MATCH (n) DETACH DELETE n"
 
@@ -28,6 +32,6 @@ if [ -d "/cyphers" ]; then
 fi
 
 TOTAL_CHANGES=$(cypher-shell --format plain "MATCH (n) RETURN count(n) AS count")
-log_info "Wrapper: Changes $(echo ${TOTAL_CHANGES} | sed -e 's/[\r\n]//g')"
+log_info "Changes $(echo ${TOTAL_CHANGES} | sed -e 's/[\r\n]//g')"
 
 fg %1
