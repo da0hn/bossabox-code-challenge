@@ -7,5 +7,5 @@
 
 <details>
   <summary>References</summary>
-      * [Neo4j Spring Data v7.0.x Reference](https://docs.spring.io/spring-data/neo4j/docs/7.0.x/reference/html/)
+     <li><a href="https://docs.spring.io/spring-data/neo4j/docs/7.0.x/reference/html/">Neo4j Spring Data v7.0.x.</a></li>
 </details>
