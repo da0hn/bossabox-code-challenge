@@ -45,4 +45,5 @@ public class ApiErrorResponse<T> implements ErrorResponse<T> {
     return false;
   }
 
+  public record ApiErrorDetail(String detail){}
 }
