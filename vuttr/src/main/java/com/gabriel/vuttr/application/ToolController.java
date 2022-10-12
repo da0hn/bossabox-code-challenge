@@ -1,5 +1,9 @@
 package com.gabriel.vuttr.application;
 
+import com.gabriel.vuttr.application.commons.ItemResponse;
+import com.gabriel.vuttr.application.commons.Response;
+import com.gabriel.vuttr.application.commons.impl.ApiItemResponse;
+import com.gabriel.vuttr.application.commons.impl.ApiResponse;
 import com.gabriel.vuttr.core.dtos.CreateToolRequest;
 import com.gabriel.vuttr.core.dtos.ToolCreatedResponse;
 import com.gabriel.vuttr.core.dtos.ToolItemFilterParameter;
@@ -19,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/tools")
@@ -32,19 +34,19 @@ public class ToolController {
 
 
   @GetMapping
-  public ResponseEntity<List<ToolItemResponse>> findAll(
+  public ResponseEntity<ItemResponse<ToolItemResponse>> findAll(
     @RequestParam(value = "tag", required = false) final String tag
   ) {
     final var response = this.getAllTools.execute(new ToolItemFilterParameter(tag));
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(ApiItemResponse.of(response));
   }
 
   @PostMapping
-  public ResponseEntity<ToolCreatedResponse> create(
+  public ResponseEntity<Response<ToolCreatedResponse>> create(
     @RequestBody final CreateToolRequest request
   ) {
     final var response = this.createTool.execute(request);
-    return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.of(response));
   }
 
   @DeleteMapping("/{toolId}")
