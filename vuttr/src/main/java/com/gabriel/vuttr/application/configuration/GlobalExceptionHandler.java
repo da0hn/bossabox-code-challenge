@@ -2,13 +2,13 @@ package com.gabriel.vuttr.application.configuration;
 
 import com.gabriel.vuttr.application.commons.ErrorResponse;
 import com.gabriel.vuttr.application.commons.impl.ApiErrorResponse;
-import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

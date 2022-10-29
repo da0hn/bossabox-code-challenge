@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.neo4j.config.EnableNeo4jAuditing;
 
-@SpringBootApplication
 @EnableNeo4jAuditing
+@SpringBootApplication
 public class VuttrApplication {
 
   public static void main(final String[] args) {
