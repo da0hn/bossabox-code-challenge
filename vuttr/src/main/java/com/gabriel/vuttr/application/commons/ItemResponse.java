@@ -8,5 +8,6 @@ public interface ItemResponse<T> {
 
   boolean getSuccess();
 
+  boolean isEmpty();
 
 }

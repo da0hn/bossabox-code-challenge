@@ -2,6 +2,7 @@ package com.gabriel.vuttr.application.commons.impl;
 
 import com.gabriel.vuttr.application.commons.ItemResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,6 +32,11 @@ public class ApiItemResponse<T> implements ItemResponse<T> {
   @Override
   public boolean getSuccess() {
     return this.success;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return CollectionUtils.isEmpty(this.data);
   }
 
 }

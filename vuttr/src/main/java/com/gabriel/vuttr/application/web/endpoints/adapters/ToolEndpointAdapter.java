@@ -2,8 +2,7 @@ package com.gabriel.vuttr.application.web.endpoints.adapters;
 
 import com.gabriel.vuttr.application.commons.ItemResponse;
 import com.gabriel.vuttr.application.commons.Response;
-import com.gabriel.vuttr.application.commons.impl.ApiItemResponse;
-import com.gabriel.vuttr.application.commons.impl.ApiResponse;
+import com.gabriel.vuttr.application.commons.impl.ResponseEntityAdapter;
 import com.gabriel.vuttr.application.web.endpoints.ToolEndpoint;
 import com.gabriel.vuttr.core.dtos.CreateToolRequest;
 import com.gabriel.vuttr.core.dtos.ToolCreatedResponse;
@@ -29,19 +28,19 @@ public class ToolEndpointAdapter implements ToolEndpoint {
   @Override
   public ResponseEntity<ItemResponse<ToolItemResponse>> findAll(final String tag) {
     final var response = this.getAllTools.execute(new ToolItemFilterParameter(tag));
-    return ResponseEntity.ok(ApiItemResponse.of(response));
+    return ResponseEntityAdapter.items(response);
   }
 
   @Override
   public ResponseEntity<Response<ToolCreatedResponse>> create(final CreateToolRequest request) {
     final var response = this.createTool.execute(request);
-    return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.of(response));
+    return ResponseEntityAdapter.of(response, HttpStatus.CREATED);
   }
 
   @Override
-  public ResponseEntity<Void> deleteById(final Long id) {
+  public ResponseEntity<Response<Void>> deleteById(final Long id) {
     this.deleteTool.execute(id);
-    return ResponseEntity.status(HttpStatus.OK).build();
+    return ResponseEntityAdapter.empty();
   }
 
 }

@@ -29,6 +29,6 @@ public interface ToolEndpoint {
   );
 
   @DeleteMapping("/{toolId}")
-  ResponseEntity<Void> deleteById(@PathVariable("toolId") Long id);
+  ResponseEntity<Response<Void>> deleteById(@PathVariable("toolId") Long id);
 
 }
