@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @AllArgsConstructor
 public class ToolEndpointAdapter implements ToolEndpoint {
@@ -32,7 +34,7 @@ public class ToolEndpointAdapter implements ToolEndpoint {
   }
 
   @Override
-  public ResponseEntity<Response<ToolCreatedResponse>> create(final CreateToolRequest request) {
+  public ResponseEntity<Response<ToolCreatedResponse>> create(@Valid final CreateToolRequest request) {
     final var response = this.createTool.execute(request);
     return ResponseEntityAdapter.of(response, HttpStatus.CREATED);
   }

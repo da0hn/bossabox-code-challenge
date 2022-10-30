@@ -28,7 +28,7 @@ public abstract class Neo4jContainerSetup {
 
   private static final Neo4jContainer<?> neo4jContainer = new Neo4jContainer<>("neo4j:4.4")
     .withoutAuthentication()
-    .withReuse(false);
+    .withReuse(true);
 
 
   @DynamicPropertySource
