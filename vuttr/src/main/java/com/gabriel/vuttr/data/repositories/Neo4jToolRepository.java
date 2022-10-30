@@ -11,10 +11,12 @@ import java.util.List;
 public interface Neo4jToolRepository extends Neo4jRepository<Tool, Long> {
 
   @Query(
-    "MATCH (tool:Tool)-[relation:TAGGED_BY]->(tag:Tag) " +
-    "WITH tool, collect(tag) AS tags, collect(relation) AS taggedBy " +
-    "WHERE any(t IN tags WHERE t.name = $tag) OR $tag IS NULL " +
-    "RETURN tool, tags, taggedBy "
+    """
+    MATCH (tool:Tool)-[relation:TAGGED_BY]->(tag:Tag)
+    WITH tool, collect(tag) AS tags, collect(relation) AS taggedBy
+    WHERE any(t IN tags WHERE t.name = $tag) OR $tag IS NULL OR $tag = ''
+    RETURN tool, tags, taggedBy
+    """
   )
   List<Tool> findToolsFilteringBy(String tag);
 
