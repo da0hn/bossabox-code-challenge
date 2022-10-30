@@ -1,4 +1,4 @@
-package com.gabriel.vuttr;
+package com.gabriel.vuttr.integration.config;
 
 import org.junit.jupiter.api.Tag;
 

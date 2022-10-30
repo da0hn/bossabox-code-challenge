@@ -1,4 +1,4 @@
-package com.gabriel.vuttr;
+package com.gabriel.vuttr.integration.config;
 
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.neo4j.Neo4jDataAutoConfiguration;
@@ -20,10 +20,13 @@ import java.util.Objects;
   Neo4jDataAutoConfiguration.class
 })
 @EnableTransactionManagement
-@EnableNeo4jRepositories(considerNestedRepositories = true)
+@EnableNeo4jRepositories(
+  considerNestedRepositories = true,
+  basePackages = "com.gabriel.vuttr"
+)
 public abstract class Neo4jContainerSetup {
 
-  static final Neo4jContainer<?> neo4jContainer = new Neo4jContainer<>("neo4j:4.4")
+  private static final Neo4jContainer<?> neo4jContainer = new Neo4jContainer<>("neo4j:4.4")
     .withoutAuthentication()
     .withReuse(false);
 
@@ -39,7 +42,8 @@ public abstract class Neo4jContainerSetup {
 
   }
 
-  static void initDatabase(
+
+  public static void initDatabase(
     final Neo4jTemplate template,
     final Neo4jClient client
   ) {
@@ -113,7 +117,7 @@ public abstract class Neo4jContainerSetup {
       """).run();
   }
 
-  static void deleteAll(
+  public static void deleteAll(
     final Neo4jTemplate template,
     final Neo4jClient client
   ) {

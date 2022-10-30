@@ -1,11 +1,12 @@
-package com.gabriel.vuttr;
+package com.gabriel.vuttr.integration;
 
+import com.gabriel.vuttr.integration.config.IntegrationTest;
+import com.gabriel.vuttr.integration.config.Neo4jContainerSetup;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,15 +20,16 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @IntegrationTest
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = Neo4jContainerSetup.class)
+@DisplayName("Test endpoint GET /tools?tag={}")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ToolEndpointIntegrationTest extends Neo4jContainerSetup {
+class GetAllToolsEndpointTest extends Neo4jContainerSetup {
 
   private final WebTestClient webClient;
   private final Neo4jTemplate template;
   private final Neo4jClient client;
 
   @Autowired
-  ToolEndpointIntegrationTest(
+  GetAllToolsEndpointTest(
     final WebTestClient webClient,
     final Neo4jTemplate template,
     final Neo4jClient client
