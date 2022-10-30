@@ -1,0 +1,7 @@
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          neo4j:
+            cypher: debug
