@@ -2,11 +2,14 @@ package com.gabriel.vuttr.application.configuration;
 
 import com.gabriel.vuttr.application.commons.ErrorResponse;
 import com.gabriel.vuttr.application.commons.impl.ApiErrorResponse;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
@@ -33,10 +36,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     return ApiErrorResponse.of(errors, null);
   }
 
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ErrorResponse<Map<String, List<String>>> handleMethodArgumentNotValidException(
-    final MethodArgumentNotValidException ex
+  @Override
+  protected ResponseEntity<Object> handleMethodArgumentNotValid(
+    final MethodArgumentNotValidException ex,
+    final HttpHeaders headers,
+    final HttpStatus status,
+    final WebRequest request
   ) {
     final Map<String, List<String>> errors = new HashMap<>();
     ex.getBindingResult().getFieldErrors().forEach(error -> {
@@ -46,9 +51,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       values.add(errorMessage);
       errors.put(fieldName, values);
     });
-    return ApiErrorResponse.of(errors, null);
+    return ResponseEntity.badRequest().body(ApiErrorResponse.of(errors, null));
   }
-
 
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(IllegalArgumentException.class)
