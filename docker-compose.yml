@@ -1,11 +1,12 @@
 version: '3.9'
 services:
   vuttr-db:
-    image: neo4j:4.4-enterprise
+    image: vuttr-neo4j-db
     container_name: vuttr-db
     restart: always
     build:
       context: ./vuttr-database
+      dockerfile: Dockerfile
     ports:
       - "7474:7474"
       - "7687:7687"
