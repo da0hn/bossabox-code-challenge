@@ -1,20 +1,20 @@
 package com.gabriel.vuttr.core.dtos;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 public record CreateUserRequest(
-  @NotEmpty
+  @NotBlank
   String username,
-  @NotEmpty
+  @NotBlank
   String password,
-  @NotEmpty
+  @NotBlank
   String passwordConfirmation,
   @Email
-  @NotEmpty
+  @NotBlank
   String email,
-  @NotEmpty
+  @NotBlank
   Set<Long> roles
 ) {
 }
