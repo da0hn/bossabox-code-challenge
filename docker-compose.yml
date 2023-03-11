@@ -17,6 +17,14 @@ services:
       - ./.docker/neo4j/plugins:/plugins
       - ./vuttr-database/initial-data.cql:/cyphers/initial-data.cql
     environment:
-      - NEO4J_AUTH=none
+      - NEO4J_USER=neo4j
+      - NEO4J_PASS=12345678
+      - NEO4J_AUTH=neo4j/12345678
       - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+    networks:
+      - vuttr-network
 
+networks:
+  vuttr-network:
+    name: vuttr-network
+    driver: bridge
