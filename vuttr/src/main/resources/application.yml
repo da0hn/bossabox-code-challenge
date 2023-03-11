@@ -2,10 +2,10 @@ spring:
   application:
     name: vuttr-service
   neo4j:
-    uri: bolt://${NEO4j_HOST:localhost}:${NEO4j_PORT:7687}
+    uri: neo4j://${NEO4J_HOST:localhost}:${NEO4J_PORT:7687}
     authentication:
-      username: neo4j
-      password: 12345678
+      username: ${NEO4J_USER:neo4j}
+      password: ${NEO4J_PASS:12345678}
   devtools:
     livereload:
       enabled: true
