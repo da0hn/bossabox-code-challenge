@@ -15,9 +15,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class CreateUserService implements CreateUserUseCase {
 
-
   private final Repository repository;
-
 
   @Override
   public UserCreatedResponse execute(@Valid final CreateUserRequest request) {
@@ -26,10 +24,7 @@ public class CreateUserService implements CreateUserUseCase {
       throw new IllegalStateException();
     }
 
-    final var maybeUser = this.repository.maybeGetByEmail(request.email());
-    if (maybeUser.isPresent()) {
-      throw new IllegalStateException("User already exists!");
-    }
+    this.validateUserEmail(request);
 
     final var newUser = User.newInstance(
       request.username(),
@@ -42,6 +37,13 @@ public class CreateUserService implements CreateUserUseCase {
     final var createdUser = this.repository.create(newUser);
 
     return UserCreatedResponse.of(createdUser);
+  }
+
+  private void validateUserEmail(final CreateUserRequest request) {
+    final var existsByEmail = this.repository.existsByEmail(request.email());
+    if (existsByEmail) {
+      throw new IllegalStateException("Cannot create an User with this email");
+    }
   }
 
   private Set<Role> fetchRoles(final CreateUserRequest request) {

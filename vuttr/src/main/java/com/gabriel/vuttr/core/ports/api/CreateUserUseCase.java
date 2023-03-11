@@ -5,7 +5,6 @@ import com.gabriel.vuttr.core.domain.User;
 import com.gabriel.vuttr.core.dtos.CreateUserRequest;
 import com.gabriel.vuttr.core.dtos.UserCreatedResponse;
 
-import java.util.Optional;
 import java.util.Set;
 
 @FunctionalInterface
@@ -17,9 +16,9 @@ public interface CreateUserUseCase {
 
     User create(User user);
 
-    Optional<User> maybeGetByEmail(String email);
+    boolean existsByEmail(String email);
 
-    Set<Role> findRolesById(Set<Long> roles);
+    Set<Role> findRolesById(Set<Long> rolesId);
 
 
   }
