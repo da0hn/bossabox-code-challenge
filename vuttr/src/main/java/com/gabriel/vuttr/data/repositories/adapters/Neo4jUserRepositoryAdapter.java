@@ -34,4 +34,9 @@ public class Neo4jUserRepositoryAdapter implements UserRepository {
     return new HashSet<>(this.roleRepository.findAllById(rolesId));
   }
 
+  @Override
+  public Set<Role> findAllRoles() {
+    return new HashSet<>(this.roleRepository.findAll());
+  }
+
 }
