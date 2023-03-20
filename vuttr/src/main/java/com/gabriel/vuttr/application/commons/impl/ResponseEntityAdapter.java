@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public class ResponseEntityAdapter<T> extends ResponseEntity<T> {
 
-  public ResponseEntityAdapter(
+  private ResponseEntityAdapter(
     final T body,
     final HttpStatus status
   ) {
