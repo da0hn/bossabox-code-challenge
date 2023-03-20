@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.application.web.endpoints;
 
-import com.gabriel.vuttr.application.commons.ItemResponse;
+import com.gabriel.vuttr.application.commons.CollectionResponse;
 import com.gabriel.vuttr.application.commons.Response;
 import com.gabriel.vuttr.core.dtos.CreateToolRequest;
 import com.gabriel.vuttr.core.dtos.ToolCreatedResponse;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ToolEndpoint {
 
   @GetMapping
-  ResponseEntity<ItemResponse<ToolItemResponse>> findAll(
+  ResponseEntity<CollectionResponse<ToolItemResponse>> findAll(
     @RequestParam(value = "tag", required = false) String tag
   );
 

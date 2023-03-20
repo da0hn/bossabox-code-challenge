@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.application.web.endpoints.adapters;
 
-import com.gabriel.vuttr.application.commons.ItemResponse;
+import com.gabriel.vuttr.application.commons.CollectionResponse;
 import com.gabriel.vuttr.application.commons.Response;
 import com.gabriel.vuttr.application.commons.impl.ResponseEntityAdapter;
 import com.gabriel.vuttr.application.web.endpoints.ToolEndpoint;
@@ -28,7 +28,7 @@ public class ToolEndpointAdapter implements ToolEndpoint {
 
 
   @Override
-  public ResponseEntity<ItemResponse<ToolItemResponse>> findAll(final String tag) {
+  public ResponseEntity<CollectionResponse<ToolItemResponse>> findAll(final String tag) {
     final var response = this.getAllTools.execute(new ToolItemFilterParameter(tag));
     return ResponseEntityAdapter.items(response);
   }

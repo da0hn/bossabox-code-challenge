@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.application.commons.impl;
 
-import com.gabriel.vuttr.application.commons.ItemResponse;
+import com.gabriel.vuttr.application.commons.CollectionResponse;
 import com.gabriel.vuttr.application.commons.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ public class ResponseEntityAdapter<T> extends ResponseEntity<T> {
     super(body, status);
   }
 
-  public static <T> ResponseEntity<ItemResponse<T>> items(final Collection<T> item) {
+  public static <T> ResponseEntity<CollectionResponse<T>> items(final Collection<T> item) {
     final var status = item.isEmpty() ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-    return new ResponseEntityAdapter<>(ApiItemResponse.of(item), status);
+    return new ResponseEntityAdapter<>(ApiCollectionResponse.of(item), status);
   }
 
   public static <T> ResponseEntity<Response<T>> of(final T data) {

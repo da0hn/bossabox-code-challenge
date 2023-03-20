@@ -1,6 +1,6 @@
 package com.gabriel.vuttr.application.commons.impl;
 
-import com.gabriel.vuttr.application.commons.ItemResponse;
+import com.gabriel.vuttr.application.commons.CollectionResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.util.CollectionUtils;
 
@@ -10,13 +10,13 @@ import java.util.Collections;
 import java.util.Optional;
 
 @AllArgsConstructor
-public class ApiItemResponse<T> implements ItemResponse<T> {
+public class ApiCollectionResponse<T> implements CollectionResponse<T> {
 
   private final Collection<T> data;
   private final boolean success;
 
-  public static <T> ItemResponse<T> of(final Collection<T> data) {
-    return new ApiItemResponse<>(
+  public static <T> CollectionResponse<T> of(final Collection<T> data) {
+    return new ApiCollectionResponse<>(
       data,
       true
     );

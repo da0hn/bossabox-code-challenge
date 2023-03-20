@@ -26,4 +26,6 @@ public class UserEndpointAdapter {
     return ApiResponse.of(response);
   }
 
+
+
 }
