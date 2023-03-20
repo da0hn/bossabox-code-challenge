@@ -2,6 +2,7 @@ package com.gabriel.vuttr.application.commons.impl;
 
 import com.gabriel.vuttr.application.commons.CollectionResponse;
 import lombok.AllArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class ApiCollectionResponse<T> implements CollectionResponse<T> {
   }
 
   @Override
+  @JsonIgnore
   public boolean isEmpty() {
     return CollectionUtils.isEmpty(this.data);
   }
