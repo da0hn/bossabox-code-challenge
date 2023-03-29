@@ -35,10 +35,4 @@ public class ApiCollectionResponse<T> implements CollectionResponse<T> {
     return this.success;
   }
 
-  @Override
-  @JsonIgnore
-  public boolean isEmpty() {
-    return CollectionUtils.isEmpty(this.data);
-  }
-
 }

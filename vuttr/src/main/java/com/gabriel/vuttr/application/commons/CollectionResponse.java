@@ -8,6 +8,4 @@ public interface CollectionResponse<T> extends Response<Collection<T>> {
 
   boolean getSuccess();
 
-  boolean isEmpty();
-
 }
