@@ -2,8 +2,6 @@ package com.gabriel.vuttr.application.commons.impl;
 
 import com.gabriel.vuttr.application.commons.CollectionResponse;
 import lombok.AllArgsConstructor;
-import net.minidev.json.annotate.JsonIgnore;
-import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
