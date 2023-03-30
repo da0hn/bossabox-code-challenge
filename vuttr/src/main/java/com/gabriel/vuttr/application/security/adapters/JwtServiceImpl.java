@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -31,8 +32,8 @@ public class JwtServiceImpl implements JwtService {
     final String token,
     final UserDetails userDetails
   ) {
-    final var username = this.extractUsername(token);
-    return (username.equals(userDetails.getUsername())) && !this.isTokenExpired(token);
+    final var username = Objects.requireNonNull(this.extractUsername(token));
+    return username.equals(userDetails.getUsername()) && !this.isTokenExpired(token);
   }
 
   @Override
