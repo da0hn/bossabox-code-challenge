@@ -5,10 +5,12 @@ import com.gabriel.vuttr.core.domain.User;
 import com.gabriel.vuttr.core.dtos.CreateUserRequest;
 import com.gabriel.vuttr.core.dtos.UserCreatedResponse;
 import com.gabriel.vuttr.core.ports.api.CreateUserUseCase;
+import com.gabriel.vuttr.core.ports.spi.Encoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
+import java.util.Objects;
 import java.util.Set;
 
 @Component
@@ -16,6 +18,7 @@ import java.util.Set;
 public class CreateUserService implements CreateUserUseCase {
 
   private final Repository repository;
+  private final Encoder encoder;
 
   @Override
   public UserCreatedResponse execute(@Valid final CreateUserRequest request) {
@@ -24,12 +27,12 @@ public class CreateUserService implements CreateUserUseCase {
       throw new IllegalStateException();
     }
 
-    this.validateUserEmail(request);
+    this.validateUniqueFields(request);
+    validatePassword(request);
 
     final var newUser = User.newInstance(
       request.username(),
-      request.password(),
-      request.passwordConfirmation(),
+      this.encoder.encode(request.password()),
       request.email(),
       this.fetchRoles(request)
     );
@@ -39,10 +42,18 @@ public class CreateUserService implements CreateUserUseCase {
     return UserCreatedResponse.of(createdUser);
   }
 
-  private void validateUserEmail(final CreateUserRequest request) {
+  private void validateUniqueFields(final CreateUserRequest request) {
+    // FIXME: validate user with email and username
     final var existsByEmail = this.repository.existsByEmail(request.email());
     if (existsByEmail) {
       throw new IllegalStateException("Cannot create an User with this email");
+    }
+  }
+
+  private static void validatePassword(final CreateUserRequest request) {
+    Objects.requireNonNull(request.password());
+    if (!Objects.equals(request.password(), request.passwordConfirmation())) {
+      throw new IllegalStateException("Password don't match");
     }
   }
 

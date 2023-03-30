@@ -6,7 +6,6 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serial;
-import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -44,14 +43,9 @@ public class User extends NodeEntity<User> implements UnmodifiableNodeEntity<Use
   public static User newInstance(
     final String username,
     final String password,
-    final String passwordConfirmation,
     final String email,
     final Set<Role> roles
   ) {
-    Objects.requireNonNull(password);
-    if (!Objects.equals(password, passwordConfirmation)) {
-      throw new IllegalStateException("Password don't match");
-    }
     return new User(
       null,
       username,
