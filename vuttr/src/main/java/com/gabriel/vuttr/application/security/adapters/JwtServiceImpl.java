@@ -51,7 +51,7 @@ public class JwtServiceImpl implements JwtService {
       .setSubject(userDetails.getUsername())
       .claim("authorities", userDetails.getAuthorities())
       .setIssuedAt(new Date(System.currentTimeMillis()))
-      .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(24)))
+      .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(this.jwtProperties.tokenDurationInHours())))
       .signWith(Keys.hmacShaKeyFor(this.jwtProperties.secret().getBytes()), SignatureAlgorithm.HS512)
       .compact();
   }

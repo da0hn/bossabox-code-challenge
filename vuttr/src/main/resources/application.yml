@@ -27,3 +27,4 @@ vuttr:
   jwt:
     # https://www.allkeysgenerator.com/ encryption key 512bits
     secret: ${JWT_SECRET:RgUkXp2s5u8x/A?D(G+KbPeShVmYq3t6w9y$B&E)H@McQfTjWnZr4u7x!A%C*F-J}
+    token-duration-in-hours: 24
