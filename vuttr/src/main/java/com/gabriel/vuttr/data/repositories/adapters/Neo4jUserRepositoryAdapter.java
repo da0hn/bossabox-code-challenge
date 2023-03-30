@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -42,6 +43,11 @@ public class Neo4jUserRepositoryAdapter implements UserRepository {
   @Override
   public Set<User> findAll() {
     return new HashSet<>(this.userRepository.findAll());
+  }
+
+  @Override
+  public Optional<User> findByUsername(final String username) {
+    return this.userRepository.findByUsername(username);
   }
 
 }
