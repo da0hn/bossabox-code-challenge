@@ -1,4 +1,4 @@
-package com.gabriel.vuttr.application.security;
+package com.gabriel.vuttr.application.configuration.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
