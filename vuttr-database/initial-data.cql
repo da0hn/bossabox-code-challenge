@@ -65,16 +65,17 @@ CREATE (localhost)<-[:TAGGED_BY]-(fastify)
 CREATE (node)<-[:TAGGED_BY]-(fastify)
 
 // -------------------------------------------------------------------------------
+// default password: 12345678
 
 CREATE (yuriduli:User {
   username: 'yuriduli',
-  password: 'yUr1DuL1',
+  password: '$2a$10$O2kKb.ooh.uwzTG7HILU5.f2LnokqdjaOSDeXaZGCrV83X3EHrWiq',
   email:    'yuriduli13@gmail.com'
 })
 
 CREATE (da0hn:User {
   username: 'da0hn',
-  password: '123456',
+  password: '$2a$10$O2kKb.ooh.uwzTG7HILU5.f2LnokqdjaOSDeXaZGCrV83X3EHrWiq',
   email:    'da0hn@gmail.com'
 })
 
