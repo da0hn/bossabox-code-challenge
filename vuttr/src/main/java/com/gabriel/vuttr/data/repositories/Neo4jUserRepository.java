@@ -18,7 +18,7 @@ public interface Neo4jUserRepository extends Neo4jRepository<User, Long> {
 
   @Query(
     """
-    MATCH (user:User{username:$username})-[relation:HAS]->(role:Role) 
+    MATCH (user:User{username:$username})-[relation:HAS]->(role:Role)
     WITH user, collect(relation) as roleRelation, collect(role) as roles
     RETURN user, roleRelation, roles
     """
