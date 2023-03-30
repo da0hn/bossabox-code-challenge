@@ -17,8 +17,11 @@ public interface Neo4jUserRepository extends Neo4jRepository<User, Long> {
   boolean existsByEmail(String email);
 
   @Query(
-    "MATCH (user:User{username:$username}) " +
-    "RETURN user"
+    """
+    MATCH (user:User{username:$username})-[relation:HAS]->(role:Role) 
+    WITH user, collect(relation) as roleRelation, collect(role) as roles
+    RETURN user, roleRelation, roles
+    """
   )
   Optional<User> findByUsername(String username);
 
