@@ -22,5 +22,7 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  // https://plusreturn.com/blog/how-to-configure-a-path-alias-in-a-react-typescript-app-for-cleaner-imports/
+  "extends": "./tsconfig.path.json"
 }
