@@ -7,13 +7,18 @@ import '@vuttr/styles/globals.css';
 import "primereact/resources/themes/mira/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router}></RouterProvider>
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router}></RouterProvider>
+        </QueryClientProvider>
     </React.StrictMode>
 );
 
