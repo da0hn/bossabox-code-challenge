@@ -1,8 +1,9 @@
 import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Login from "@vuttr/pages/Login";
-import Root from "@vuttr/routes/Root";
 import {AuthGuard} from "@vuttr/context/AuthContext";
+import HomeLayout from "@vuttr/components/HomeLayout";
+import Home from "@vuttr/pages/Home";
 
 
 export default function Router() {
@@ -10,8 +11,11 @@ export default function Router() {
         <BrowserRouter>
             <Routes>
                 <Route path='/login' element={<Login/>}/>
-                <Route path='/home' element={<AuthGuard children={<Root/>}/>}/>
-                <Route path='*' element={<AuthGuard children={<Root/>}/>}/>
+                <Route element={<AuthGuard children={<HomeLayout/>}/>}>
+                    <Route path='/' element={<Navigate to='/home' replace/>}/>
+                    <Route path='/home' element={<Home/>}/>
+                </Route>
+                <Route path='*' element={<AuthGuard children={<HomeLayout/>}/>}/>
             </Routes>
         </BrowserRouter>
     )
