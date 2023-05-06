@@ -1,24 +1,38 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useRef, useState} from "react";
 import {InputText} from "primereact/inputtext";
 import {Card} from "primereact/card";
 import {Button} from "primereact/button";
 import {useLogin} from "@vuttr/hooks/useLogin";
+import {Toast} from "primereact/toast";
 
 export default function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const {mutate, data} = useLogin();
+    // TODO: use `use-between` library to create global Toast https://github.com/betula/use-between
+    const toast = useRef<Toast>(null);
+
+    const showToast = () => {
+        toast.current?.show({
+            severity: 'success',
+            summary: 'Operation success',
+            detail: 'message content',
+            life: 3000
+        });
+    }
 
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const request = {login: username, password}
         mutate(request);
         console.log({...data});
+        showToast();
     };
 
     return (
         <main className="h-screen flex items-center justify-center">
+            <Toast ref={toast} position="top-right"/>
             <Card>
                 <div className="m-8">
                     <form className="flex flex-col gap-8 w-full max-w-xs" onSubmit={onSubmit}>
