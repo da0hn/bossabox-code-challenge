@@ -1,5 +1,6 @@
 import React, {createContext, useRef} from "react";
 import {Toast} from "primereact/toast";
+import {Outlet} from "react-router-dom";
 
 
 export type ToastContextParameters = {
@@ -32,7 +33,7 @@ export function ToastProvider({children}: { children: React.ReactNode }) {
     return (
         <ToastContext.Provider value={value}>
             <Toast ref={toastRef} position="top-right"/>
-            {children}
+            {children ? children : <Outlet/>}
         </ToastContext.Provider>
     );
 }
