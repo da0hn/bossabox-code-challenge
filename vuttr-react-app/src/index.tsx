@@ -9,6 +9,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {AuthProvider} from "@vuttr/context/AuthContext";
+import {ToastProvider} from "@vuttr/context/ToastContext";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +20,9 @@ root.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
             <AuthProvider>
-                <RouterProvider router={router}></RouterProvider>
+                <ToastProvider>
+                    <RouterProvider router={router}></RouterProvider>
+                </ToastProvider>
             </AuthProvider>
         </QueryClientProvider>
     </React.StrictMode>

@@ -1,6 +1,6 @@
-import {useMutation} from "@tanstack/react-query";
 import {apiClient} from "@vuttr/services/ApiClient";
 import {ApiResponse} from "@vuttr/types/VuttrResponseWrappers";
+import {useToastifiedMutation} from "@vuttr/hooks/useToastifiedMutation";
 
 
 type UserLoginResponse = { token: string };
@@ -20,10 +20,15 @@ const doLogin = async (parameters: LoginParameters): Promise<ApiResponse<UserLog
 
 
 export function useLogin() {
-    const query = useMutation({
-        mutationFn: doLogin,
-        mutationKey: ['user-login'],
-    });
+    const query = useToastifiedMutation(
+        {
+            mutationFn: doLogin,
+            mutationKey: ['user-login'],
+        },
+        {
+            messageOnSuccess: 'Successful login',
+        }
+    );
     return {
         ...query,
         data: query.data?.data,
