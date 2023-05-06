@@ -24,6 +24,7 @@ export function useLogin() {
         {
             mutationFn: doLogin,
             mutationKey: ['user-login'],
+            retry: false
         },
         {
             messageOnSuccess: 'Successful login',
