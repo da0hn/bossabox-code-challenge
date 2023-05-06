@@ -4,20 +4,25 @@ import {Card} from "primereact/card";
 import {Button} from "primereact/button";
 import {useLogin} from "@vuttr/hooks/useLogin";
 import {Toast} from "primereact/toast";
+import useAuth from "@vuttr/hooks/useAuth";
 
 export default function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const {mutate, data} = useLogin();
-    // TODO: use `use-between` library to create global Toast https://github.com/betula/use-between
+    const {mutate, data, isSuccess} = useLogin();
+    let auth = useAuth();
     const toast = useRef<Toast>(null);
 
-    const showToast = () => {
+    const showToast = (
+        severity: 'success' | 'info' | 'warn' | 'error' | undefined,
+        summary?: string,
+        detail?: string
+    ) => {
         toast.current?.show({
-            severity: 'success',
-            summary: 'Operation success',
-            detail: 'message content',
+            severity: severity,
+            summary: summary,
+            detail: detail,
             life: 3000
         });
     }
@@ -26,8 +31,15 @@ export default function Login() {
         event.preventDefault();
         const request = {login: username, password}
         mutate(request);
-        console.log({...data});
-        showToast();
+
+        if (isSuccess) {
+            auth.signin(data!.token);
+            showToast(
+                'success',
+                'Operation Success',
+                'Successful login'
+            );
+        }
     };
 
     return (

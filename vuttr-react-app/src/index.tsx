@@ -8,6 +8,7 @@ import "primereact/resources/themes/mira/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {AuthProvider} from "@vuttr/context/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +18,9 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router}></RouterProvider>
+            <AuthProvider>
+                <RouterProvider router={router}></RouterProvider>
+            </AuthProvider>
         </QueryClientProvider>
     </React.StrictMode>
 );

@@ -26,7 +26,7 @@ export function useLogin() {
     });
     return {
         ...query,
-        data: query.data?.data
-    }
+        data: query.data?.data,
+    };
 }
 
