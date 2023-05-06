@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {RouterProvider} from "react-router-dom";
-import {router} from "@vuttr/routes/router";
 
 import '@vuttr/styles/globals.css';
 import "primereact/resources/themes/mira/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {AuthProvider} from "@vuttr/context/AuthContext";
 import {ToastProvider} from "@vuttr/context/ToastContext";
+import Router from "@vuttr/routes/router";
+import {AuthProvider} from "@vuttr/context/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +20,7 @@ root.render(
         <QueryClientProvider client={queryClient}>
             <AuthProvider>
                 <ToastProvider>
-                    <RouterProvider router={router}></RouterProvider>
+                    <Router/>
                 </ToastProvider>
             </AuthProvider>
         </QueryClientProvider>
