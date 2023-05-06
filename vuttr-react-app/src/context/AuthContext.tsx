@@ -1,43 +1,36 @@
-import React, {createContext, useContext, useState} from "react";
+import React, {createContext, useMemo} from "react";
 import {Navigate, Outlet, useLocation} from "react-router-dom";
+import useLocalStorage from "@vuttr/hooks/useLocalStorage";
+import {useAuth} from "@vuttr/hooks/useAuth";
 
 
 interface AuthContextType {
     token?: string | null;
-    authenticated: boolean,
     signin: (newToken: string, callback?: VoidFunction) => void;
     signout: (callback?: VoidFunction) => void;
 }
 
-export const AuthContext = createContext<AuthContextType>({
-    token: null,
-    authenticated: false,
-    signin: (newToken) => {
-    },
-    signout: () => {
-    },
-});
+
+export const AuthContext = createContext<AuthContextType>(null!);
 
 
 export function AuthProvider({children}: { children: React.ReactNode }) {
-    const [token, setToken] = useState<string>(null!);
-    const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const [token, setToken] = useLocalStorage<string>('token', null!);
 
     const signin = (newToken: string, callback?: VoidFunction) => {
         setToken(newToken);
-        setAuthenticated(true);
-        localStorage.setItem('token', newToken);
         callback?.();
     };
 
     const signout = (callback?: VoidFunction) => {
         setToken(null!);
-        setAuthenticated(false);
-        localStorage.removeItem('token');
         callback?.();
     }
 
-    const value = {token, authenticated, signin, signout};
+    const value = useMemo(
+        () => ({token, signin, signout}),
+        [token]
+    );
 
     return (
         <AuthContext.Provider value={value}>
@@ -47,10 +40,8 @@ export function AuthProvider({children}: { children: React.ReactNode }) {
 }
 
 export function AuthGuard({children}: { children: JSX.Element }) {
-    const auth = useContext(AuthContext);
+    const auth = useAuth();
     const location = useLocation();
-
-    console.log(auth);
 
     if (!auth.token) {
         return (
