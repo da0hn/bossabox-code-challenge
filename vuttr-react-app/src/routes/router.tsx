@@ -3,6 +3,7 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Login from "@vuttr/pages/Login";
 import {AuthGuard} from "@vuttr/context/AuthContext";
 import HomeLayout from "@vuttr/components/HomeLayout";
+import ListTools from "@vuttr/pages/Tools/List";
 import Home from "@vuttr/pages/Home";
 
 
@@ -14,6 +15,7 @@ export default function Router() {
                 <Route element={<AuthGuard children={<HomeLayout/>}/>}>
                     <Route path='/' element={<Navigate to='/home' replace/>}/>
                     <Route path='/home' element={<Home/>}/>
+                    <Route path='/tools' element={<ListTools/>}/>
                 </Route>
                 <Route path='*' element={<AuthGuard children={<HomeLayout/>}/>}/>
             </Routes>

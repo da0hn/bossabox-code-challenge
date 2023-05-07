@@ -15,6 +15,7 @@ export const AuthContext = createContext<AuthContextType>(null!);
 
 
 export function AuthProvider({children}: { children: React.ReactNode }) {
+    // https://www.robinwieruch.de/react-router-private-routes/
     const [token, setToken] = useLocalStorage<string>('token', null!);
 
     const signin = (newToken: string, callback?: VoidFunction) => {

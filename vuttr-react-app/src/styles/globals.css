@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.p-fieldset .p-fieldset-legend {
+    padding: 1rem;
+    border: 1px solid #E5E9F0;
+    color: #4C566A;
+    background: #ffffff;
+    font-weight: 600;
+    border-radius: 4px;
+    margin-left: 2rem;
+}
