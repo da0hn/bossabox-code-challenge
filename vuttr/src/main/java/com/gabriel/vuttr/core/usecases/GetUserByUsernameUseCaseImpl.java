@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class GetUserByUsernameService implements GetUserByUsernameUseCase {
+public class GetUserByUsernameUseCaseImpl implements GetUserByUsernameUseCase {
 
   private final UserRepository repository;
 

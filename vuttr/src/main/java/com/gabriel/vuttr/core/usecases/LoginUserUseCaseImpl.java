@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class LoginUserService implements LoginUserUseCase {
+public class LoginUserUseCaseImpl implements LoginUserUseCase {
 
   private final UserAuthenticationFacade userAuthenticationFacade;
 

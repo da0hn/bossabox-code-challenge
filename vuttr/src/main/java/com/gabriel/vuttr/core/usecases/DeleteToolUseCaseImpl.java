@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Component
 @AllArgsConstructor
-public class DeleteToolService implements DeleteToolUseCase {
+public class DeleteToolUseCaseImpl implements DeleteToolUseCase {
 
 
   private final Repository repository;

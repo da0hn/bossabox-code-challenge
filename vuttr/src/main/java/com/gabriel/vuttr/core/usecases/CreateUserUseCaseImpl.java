@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
-public class CreateUserService implements CreateUserUseCase {
+public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
   private final Repository repository;
   private final Encoder encoder;

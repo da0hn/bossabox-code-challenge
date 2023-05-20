@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 
 @Component
 @AllArgsConstructor
-public class CreateToolService implements CreateToolUseCase {
+public class CreateToolUseCaseImpl implements CreateToolUseCase {
 
   private final Repository repository;
 

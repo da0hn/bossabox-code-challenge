@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class GetToolByIdService implements GetToolByIdUseCase {
+public class GetToolByIdUseCaseImpl implements GetToolByIdUseCase {
 
 
   private final Repository repository;

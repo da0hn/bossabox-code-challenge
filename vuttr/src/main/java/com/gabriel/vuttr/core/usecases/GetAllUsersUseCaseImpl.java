@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class GetAllUsersService implements GetAllUsersUseCase {
+public class GetAllUsersUseCaseImpl implements GetAllUsersUseCase {
 
   private final Repository repository;
 
