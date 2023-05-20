@@ -1,5 +1,6 @@
 package com.gabriel.vuttr.data.repositories.adapters;
 
+import com.gabriel.vuttr.core.domain.EntityNotFoundException;
 import com.gabriel.vuttr.core.domain.Tag;
 import com.gabriel.vuttr.core.domain.Tool;
 import com.gabriel.vuttr.core.ports.spi.ToolRepository;
@@ -44,4 +45,9 @@ public class Neo4jToolRepositoryAdapter implements ToolRepository {
     this.toolRepository.deleteById(id);
   }
 
+  @Override
+  public Tool findById(final Long id) {
+    return this.toolRepository.findById(id)
+      .orElseThrow(() -> new EntityNotFoundException("Tool with id {0} not found", id));
+  }
 }
