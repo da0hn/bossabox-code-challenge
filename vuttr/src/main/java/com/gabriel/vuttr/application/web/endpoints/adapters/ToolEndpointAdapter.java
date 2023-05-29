@@ -9,6 +9,7 @@ import com.gabriel.vuttr.core.ports.api.CreateToolUseCase;
 import com.gabriel.vuttr.core.ports.api.DeleteToolUseCase;
 import com.gabriel.vuttr.core.ports.api.GetAllToolsUseCase;
 import com.gabriel.vuttr.core.ports.api.GetToolByIdUseCase;
+import com.gabriel.vuttr.core.ports.api.UpdateToolUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class ToolEndpointAdapter implements ToolEndpoint {
 
   private final GetAllToolsUseCase getAllTools;
   private final CreateToolUseCase createTool;
+  private final UpdateToolUseCase updateTool;
   private final DeleteToolUseCase deleteTool;
   private final GetToolByIdUseCase getToolById;
 
@@ -43,6 +45,12 @@ public class ToolEndpointAdapter implements ToolEndpoint {
   public ResponseEntity<Response<ToolCreatedResponse>> create(@Valid final CreateToolRequest request) {
     final var response = this.createTool.execute(request);
     return ResponseEntityAdapter.of(response, HttpStatus.CREATED);
+  }
+
+  @Override
+  public ResponseEntity<Response<ToolUpdatedResponse>> update(@Valid UpdateToolRequest request) {
+    final var response = this.updateTool.execute(request);
+    return ResponseEntityAdapter.of(response);
   }
 
   @Override
